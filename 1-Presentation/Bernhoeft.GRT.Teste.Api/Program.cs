@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Text.Json.Serialization;
 using Bernhoeft.GRT.Core.Extensions;
+using Bernhoeft.GRT.Teste.Api.Middlewares;
 using Bernhoeft.GRT.Teste.Api.Swashbuckle;
 using Bernhoeft.GRT.Teste.Application.Requests.Queries.v1;
 using FluentValidation;
@@ -50,11 +51,11 @@ builder.Services.AddEndpointsApiExplorer();
 
 // Configurando o versionamento.
 builder.Services.AddApiVersioning(p =>
-                {
-                    p.DefaultApiVersion = new ApiVersion(1, 0);
-                    p.ReportApiVersions = true;
-                    p.AssumeDefaultVersionWhenUnspecified = true;
-                })
+{
+    p.DefaultApiVersion = new ApiVersion(1, 0);
+    p.ReportApiVersions = true;
+    p.AssumeDefaultVersionWhenUnspecified = true;
+})
                 .AddApiExplorer(p =>
                 {
                     p.GroupNameFormat = "'Teste API v'VVV";
@@ -62,6 +63,8 @@ builder.Services.AddApiVersioning(p =>
                 });
 
 builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+builder.Services.AddProblemDetails();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddSwaggerGen(options =>
 {
     options.IgnoreObsoleteProperties();
@@ -110,7 +113,7 @@ app.UseForwardedHeaders(new()
 {
     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
 });
-
+app.UseExceptionHandler(); 
 if (app.Environment.IsDevelopment() || app.Environment.IsStaging() || Debugger.IsAttached)
 {
     app.UseSwagger();
@@ -127,10 +130,10 @@ if (app.Environment.IsDevelopment() || app.Environment.IsStaging() || Debugger.I
 }
 
 app.UseCors(options => options.WithOrigins()
-                              .AllowAnyHeader()
-                              .AllowAnyMethod()
-                              .AllowCredentials()
-                              .SetIsOriginAllowed(origin => true));
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .AllowCredentials()
+                            .SetIsOriginAllowed(origin => true));
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
