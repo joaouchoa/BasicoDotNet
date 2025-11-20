@@ -35,4 +35,5 @@ Console.ForegroundColor = ConsoleColor.Green;
 Console.WriteLine("Database migrations successfully applied to PostgreSQL!");
 Console.ResetColor();
 
+Console.ReadKey();
 return 0;
