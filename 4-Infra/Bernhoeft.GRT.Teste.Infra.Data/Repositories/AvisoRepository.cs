@@ -20,7 +20,7 @@ namespace Bernhoeft.GRT.Teste.Infra.Data.Repositories
 
         public Task<List<AvisoEntity>> ObterTodosAvisosAsync(CancellationToken cancellationToken = default)
         {
-            return DbSet.AsNoTracking().ToListAsync(cancellationToken);
+            return DbSet.AsNoTracking().Where(a => a.Ativo).ToListAsync(cancellationToken);
         }
 
         public async Task<IOperationResult<AvisoEntity>> InserirAvisoAsync(AvisoEntity aviso)
@@ -28,6 +28,11 @@ namespace Bernhoeft.GRT.Teste.Infra.Data.Repositories
                 await DbSet.AddAsync(aviso);
                 await _context.SaveChangesAsync();
                 return OperationResult<AvisoEntity>.ReturnCreated();
+        }
+
+        public Task<AvisoEntity> ObterAvisoAsync(int Id, CancellationToken cancellationToken = default)
+        {
+            return DbSet.AsNoTracking().Where(a => a.Ativo && a.Id == Id).FirstOrDefaultAsync(cancellationToken);
         }
     }
 }

@@ -32,6 +32,7 @@ namespace Bernhoeft.GRT.Teste.Api.Controllers.v1
         /// <summary>
         /// Adiciona um aviso.
         /// </summary>
+        /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>Lista com Todos os Avisos.</returns>
         /// <response code="201">Criado.</response>
@@ -42,5 +43,21 @@ namespace Bernhoeft.GRT.Teste.Api.Controllers.v1
             var result = await Mediator.Send(request, cancellationToken);
             return Ok(result);
         }
+
+        /// <summary>
+        /// Retorna um Aviso por ID.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>Aviso.</returns>
+        /// <response code="200">Sucesso.</response>
+        /// <response code="400">Dados Inválidos.</response>
+        /// <response code="404">Aviso Não Encontrado.</response>
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetAvisosResponse))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<object> GetAviso(int id, CancellationToken cancellationToken)
+            => await Mediator.Send(new GetAvisoRequest(id), cancellationToken);
     }
 }
