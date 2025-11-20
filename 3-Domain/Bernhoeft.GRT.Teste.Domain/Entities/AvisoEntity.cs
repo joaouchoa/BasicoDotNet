@@ -15,5 +15,12 @@
             Titulo = titulo;
             Mensagem = mensagem;
         }
+
+        public void Atualizar(string titulo, string mensagem)
+        {
+            Titulo = titulo;
+            Mensagem = mensagem;
+            DataAtualizacao = DateTime.Now;
+        }
     }
 }

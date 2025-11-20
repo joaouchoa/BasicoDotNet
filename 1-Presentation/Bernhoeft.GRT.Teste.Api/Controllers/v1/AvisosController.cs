@@ -59,5 +59,20 @@ namespace Bernhoeft.GRT.Teste.Api.Controllers.v1
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<object> GetAviso(int id, CancellationToken cancellationToken)
             => await Mediator.Send(new GetAvisoRequest(id), cancellationToken);
+
+        /// <summary>
+        /// Atualiza um aviso.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>Lista com Todos os Avisos.</returns>
+        /// <response code="201">Atualizado.</response>
+        /// <response code="500">Erro de Servidor.</response>
+        [HttpPut]
+        public async Task<IActionResult> AtualizarAviso([FromBody] AtualizarAvisoRequest request, CancellationToken cancellationToken)
+        {
+            var result = await Mediator.Send(request, cancellationToken);
+            return Ok(result);
+        }
     }
 }

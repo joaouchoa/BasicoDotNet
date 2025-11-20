@@ -9,5 +9,6 @@ namespace Bernhoeft.GRT.Teste.Domain.Interfaces.Repositories
         Task<List<AvisoEntity>> ObterTodosAvisosAsync(CancellationToken cancellationToken = default);
         Task<IOperationResult<AvisoEntity>> InserirAvisoAsync(AvisoEntity aviso);
         Task<AvisoEntity> ObterAvisoAsync(int Id, CancellationToken cancellationToken = default);
+        Task<IOperationResult<AvisoEntity>> AtualizarAvisoAsync(AvisoEntity aviso, CancellationToken cancellationToken = default);
     }
 }
