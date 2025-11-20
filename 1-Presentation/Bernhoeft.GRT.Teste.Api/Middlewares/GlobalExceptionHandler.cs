@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
-using Bernhoeft.GRT.Core.Enums;
 using Bernhoeft.GRT.Core.Models;
 using System.Net;
 

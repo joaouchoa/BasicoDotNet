@@ -1,18 +1,20 @@
-﻿using System.Diagnostics;
-using System.Globalization;
-using System.Text.Json.Serialization;
-using Bernhoeft.GRT.Core.Extensions;
+﻿using Unchase.Swashbuckle.AspNetCore.Extensions.Extensions;
+using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
+using Bernhoeft.GRT.Teste.Application.Requests.Queries.v1;
 using Bernhoeft.GRT.Teste.Api.Middlewares;
 using Bernhoeft.GRT.Teste.Api.Swashbuckle;
-using Bernhoeft.GRT.Teste.Application.Requests.Queries.v1;
-using FluentValidation;
-using FluentValidation.AspNetCore;
-using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Http.Features;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using Unchase.Swashbuckle.AspNetCore.Extensions.Extensions;
+using System.Text.Json.Serialization;
+using Bernhoeft.GRT.Core.Extensions;
+using Bernhoeft.GRT.Teste.Api.Setup;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using FluentValidation.AspNetCore;
+using System.Globalization;
+using System.Diagnostics;
+using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -85,11 +87,7 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-// Configurando o MediatR.
-builder.Services.AddMediatR(options => options.RegisterServicesFromAssemblyContaining<GetAvisosRequest>());
-
-// Adicionar Context de Conexão com Banco de Dados SqlServer GRT.
-builder.Services.AddDbContext();
+builder.Services.AddDependencyInjection(builder.Configuration);
 
 // Outros Serviços.
 builder.Services.RegisterServicesFromAssemblyContaining<GetAvisosRequest>();
@@ -113,7 +111,7 @@ app.UseForwardedHeaders(new()
 {
     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
 });
-app.UseExceptionHandler(); 
+app.UseExceptionHandler();
 if (app.Environment.IsDevelopment() || app.Environment.IsStaging() || Debugger.IsAttached)
 {
     app.UseSwagger();

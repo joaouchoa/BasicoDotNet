@@ -1,0 +1,8 @@
+﻿{
+  "profiles": {
+    "Bernhoeft.GRT.Teste.Infra.Data.Migrations": {
+      "commandName": "Project",
+      "commandLineArgs": "Host=localhost;Port=5432;Username=admin;Password=admin;Database=db_Aviso"
+    }
+  }
+}

@@ -1,4 +1,4 @@
-﻿using Bernhoeft.GRT.ContractWeb.Domain.SqlServer.ContractStore.Entities;
+﻿using Bernhoeft.GRT.Teste.Domain.Entities;
 
 namespace Bernhoeft.GRT.Teste.Application.Responses.Queries.v1
 {

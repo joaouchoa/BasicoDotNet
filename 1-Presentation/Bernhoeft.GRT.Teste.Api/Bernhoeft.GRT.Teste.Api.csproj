@@ -12,6 +12,8 @@
     <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
     <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="7.2.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageReference Include="MicroElements.Swashbuckle.FluentValidation" Version="6.1.0" />
@@ -32,7 +34,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\2-Application\Bernhoeft.GRT.Teste.Application\Bernhoeft.GRT.Teste.Application.csproj" />
-    <ProjectReference Include="..\..\4-Infra\Bernhoeft.GRT.Teste.Infra.Persistence.InMemory\Bernhoeft.GRT.Teste.Infra.Persistence.InMemory.csproj" />
+    <ProjectReference Include="..\..\4-Infra\Bernhoeft.GRT.Teste.Infra.Data\Bernhoeft.GRT.Teste.Infra.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
