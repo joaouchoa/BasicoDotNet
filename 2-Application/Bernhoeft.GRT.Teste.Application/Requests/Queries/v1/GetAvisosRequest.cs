@@ -4,7 +4,5 @@ using MediatR;
 
 namespace Bernhoeft.GRT.Teste.Application.Requests.Queries.v1
 {
-    public record GetAvisosRequest : IRequest<IOperationResult<IEnumerable<GetAvisosResponse>>>
-    {
-    }
+    public record GetAvisosRequest : IRequest<IOperationResult<IEnumerable<GetAvisosResponse>>>;
 }
