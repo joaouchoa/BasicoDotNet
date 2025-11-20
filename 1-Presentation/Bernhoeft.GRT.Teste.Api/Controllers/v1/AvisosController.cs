@@ -66,10 +66,25 @@ namespace Bernhoeft.GRT.Teste.Api.Controllers.v1
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>Lista com Todos os Avisos.</returns>
-        /// <response code="201">Atualizado.</response>
+        /// <response code="204">Atualizado.</response>
         /// <response code="500">Erro de Servidor.</response>
         [HttpPut]
         public async Task<IActionResult> AtualizarAviso([FromBody] AtualizarAvisoRequest request, CancellationToken cancellationToken)
+        {
+            var result = await Mediator.Send(request, cancellationToken);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Remove um aviso.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>Lista com Todos os Avisos.</returns>
+        /// <response code="204">Atualizado.</response>
+        /// <response code="500">Erro de Servidor.</response>
+        [HttpDelete]
+        public async Task<IActionResult> RemoverAviso([FromBody] RemoverAvisoRequest request, CancellationToken cancellationToken)
         {
             var result = await Mediator.Send(request, cancellationToken);
             return Ok(result);

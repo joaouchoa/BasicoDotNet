@@ -40,7 +40,14 @@ namespace Bernhoeft.GRT.Teste.Infra.Data.Repositories
         {
             _context.Entry(aviso).State = EntityState.Modified;
             await _context.SaveChangesAsync(cancellationToken);
-            return OperationResult<AvisoEntity>.ReturnOk(null);
+            return OperationResult<AvisoEntity>.ReturnNoContent();
+        }
+
+        public async Task<IOperationResult<AvisoEntity>> RemoverAvisoAsync(AvisoEntity aviso, CancellationToken cancellationToken = default)
+        {
+            _context.Entry(aviso).State = EntityState.Deleted;
+            await _context.SaveChangesAsync(cancellationToken);
+            return OperationResult<AvisoEntity>.ReturnNoContent();
         }
     }
 }
