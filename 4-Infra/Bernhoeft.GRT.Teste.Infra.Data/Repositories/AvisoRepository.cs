@@ -45,7 +45,7 @@ namespace Bernhoeft.GRT.Teste.Infra.Data.Repositories
 
         public async Task<IOperationResult<AvisoEntity>> RemoverAvisoAsync(AvisoEntity aviso, CancellationToken cancellationToken = default)
         {
-            _context.Entry(aviso).State = EntityState.Deleted;
+            _context.Entry(aviso).State = EntityState.Modified;
             await _context.SaveChangesAsync(cancellationToken);
             return OperationResult<AvisoEntity>.ReturnNoContent();
         }

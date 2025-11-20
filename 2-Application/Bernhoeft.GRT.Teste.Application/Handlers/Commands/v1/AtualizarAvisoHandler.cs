@@ -34,6 +34,9 @@ namespace Bernhoeft.GRT.Teste.Application.Handlers.Commands.v1
             if(avisoEntity.Mensagem == request.Mensagem && avisoEntity.Titulo == request.Titulo)
                 return OperationResult<AvisoEntity>.ReturnBadRequest().AddMessage("O aviso fornecido não tem diferenças com o da base.");
 
+            if(avisoEntity.Ativo == false)
+                return OperationResult<AvisoEntity>.ReturnNotFound().AddMessage("O aviso não existe.");
+
             avisoEntity.Atualizar(request.Titulo, request.Mensagem);
 
             return await _repository.AtualizarAvisoAsync(avisoEntity);

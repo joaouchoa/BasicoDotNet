@@ -32,6 +32,8 @@ namespace Bernhoeft.GRT.Teste.Application.Handlers.Commands.v1
             if (avisoEntity == null)
                 return OperationResult<AvisoEntity>.ReturnNotFound().AddMessage("O aviso não existe.");
 
+            avisoEntity.Desativar();
+
             return await _repository.RemoverAvisoAsync(avisoEntity);
         }
     }

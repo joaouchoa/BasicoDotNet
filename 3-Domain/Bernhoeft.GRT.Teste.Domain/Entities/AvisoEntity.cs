@@ -22,5 +22,11 @@
             Mensagem = mensagem;
             DataAtualizacao = DateTime.Now;
         }
+
+        public void Desativar()
+        {
+            Ativo = false;
+            DataAtualizacao = DateTime.Now;
+        }
     }
 }
