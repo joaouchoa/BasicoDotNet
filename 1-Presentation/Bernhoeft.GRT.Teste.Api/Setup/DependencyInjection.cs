@@ -3,7 +3,7 @@ using Bernhoeft.GRT.Teste.Infra.Data.DependencyInjection;
 
 namespace Bernhoeft.GRT.Teste.Api.Setup
 {
-    public static class DependenceInjection
+    public static class DependencyInjection
     {
         public static IServiceCollection AddDependencyInjection(this IServiceCollection services, IConfiguration configuration)
         {

@@ -1,9 +1,9 @@
-﻿using Bernhoeft.GRT.Core.Interfaces.Results;
-using Bernhoeft.GRT.Core.Models;
-using Bernhoeft.GRT.Teste.Application.Requests.Commands.v1;
+﻿using Bernhoeft.GRT.Teste.Domain.Interfaces.Repositories;
 using Bernhoeft.GRT.Teste.Application.Requests.Commands.v1.Validations;
+using Bernhoeft.GRT.Teste.Application.Requests.Commands.v1;
+using Bernhoeft.GRT.Core.Interfaces.Results;
 using Bernhoeft.GRT.Teste.Domain.Entities;
-using Bernhoeft.GRT.Teste.Domain.Interfaces.Repositories;
+using Bernhoeft.GRT.Core.Models;
 using MediatR;
 
 namespace Bernhoeft.GRT.Teste.Application.Handlers.Commands.v1

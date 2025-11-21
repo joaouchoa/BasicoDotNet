@@ -1,10 +1,11 @@
-﻿using Bernhoeft.GRT.Teste.Application.Requests.Commands.v1;
+﻿using Bernhoeft.GRT.Teste.Application.Requests.Commands.v1.Validations;
+using Bernhoeft.GRT.Teste.Application.Requests.Commands.v1;
 using Bernhoeft.GRT.Teste.Domain.Interfaces.Repositories;
+using Bernhoeft.GRT.Teste.Application.ValidationMessages;
 using Bernhoeft.GRT.Core.Interfaces.Results;
 using Bernhoeft.GRT.Teste.Domain.Entities;
 using Bernhoeft.GRT.Core.Models;
 using MediatR;
-using Bernhoeft.GRT.Teste.Application.Requests.Commands.v1.Validations;
 
 namespace Bernhoeft.GRT.Teste.Application.Handlers.Commands.v1
 {
@@ -29,13 +30,13 @@ namespace Bernhoeft.GRT.Teste.Application.Handlers.Commands.v1
             var avisoEntity = await _repository.ObterAvisoAsync(request.Id, cancellationToken);
 
             if (avisoEntity == null)
-                return OperationResult<AvisoEntity>.ReturnNotFound().AddMessage("O aviso não existe.");
+                return OperationResult<AvisoEntity>.ReturnNotFound().AddMessage(AvisoValidationMessages.AVISO_NAO_EXISTE);
 
             if(avisoEntity.Mensagem == request.Mensagem && avisoEntity.Titulo == request.Titulo)
-                return OperationResult<AvisoEntity>.ReturnBadRequest().AddMessage("O aviso fornecido não tem diferenças com o da base.");
+                return OperationResult<AvisoEntity>.ReturnBadRequest().AddMessage(AvisoValidationMessages.AVISO_SEM_MUDANCAS);
 
             if(avisoEntity.Ativo == false)
-                return OperationResult<AvisoEntity>.ReturnNotFound().AddMessage("O aviso não existe.");
+                return OperationResult<AvisoEntity>.ReturnNotFound().AddMessage(AvisoValidationMessages.AVISO_NAO_EXISTE);
 
             avisoEntity.Atualizar(request.Titulo, request.Mensagem);
 
