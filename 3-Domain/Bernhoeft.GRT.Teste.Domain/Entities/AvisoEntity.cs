@@ -16,9 +16,8 @@
             Mensagem = mensagem;
         }
 
-        public void Atualizar(string titulo, string mensagem)
+        public void Atualizar( string mensagem)
         {
-            Titulo = titulo;
             Mensagem = mensagem;
             DataAtualizacao = DateTime.Now;
         }

@@ -14,10 +14,6 @@ namespace Bernhoeft.GRT.Teste.Application.Requests.Commands.v1.Validations
             RuleFor(request => request.Mensagem)
                 .NotEmpty()
                 .WithMessage(AvisoValidationMessages.NOT_EMPTY_ERROR_MESSAGE);
-
-            RuleFor(request => request.Titulo)
-                .NotEmpty()
-                .WithMessage(AvisoValidationMessages.NOT_EMPTY_ERROR_MESSAGE);
         }
     }
 }

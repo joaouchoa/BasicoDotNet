@@ -32,13 +32,13 @@ namespace Bernhoeft.GRT.Teste.Application.Handlers.Commands.v1
             if (avisoEntity == null)
                 return OperationResult<AvisoEntity>.ReturnNotFound().AddMessage(AvisoValidationMessages.AVISO_NAO_EXISTE);
 
-            if(avisoEntity.Mensagem == request.Mensagem && avisoEntity.Titulo == request.Titulo)
+            if(avisoEntity.Mensagem == request.Mensagem)
                 return OperationResult<AvisoEntity>.ReturnBadRequest().AddMessage(AvisoValidationMessages.AVISO_SEM_MUDANCAS);
 
             if(avisoEntity.Ativo == false)
                 return OperationResult<AvisoEntity>.ReturnNotFound().AddMessage(AvisoValidationMessages.AVISO_NAO_EXISTE);
 
-            avisoEntity.Atualizar(request.Titulo, request.Mensagem);
+            avisoEntity.Atualizar(request.Mensagem);
 
             return await _repository.AtualizarAvisoAsync(avisoEntity);
         }
