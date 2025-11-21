@@ -26,7 +26,7 @@ Foi implementado o CRUD completo para a entidade `Aviso`, com atenção especial
 | **`GET`** | `/avisos` | Retorna todos os avisos **ativos**. | 200 OK / 204 No Content |
 | **`GET`** | `/avisos/{id}` | Retorna um aviso específico pelo ID. | 200 OK / 404 Not Found |
 | **`POST`** | `/avisos` | **Cria** um novo aviso. | 201 Created |
-| **`PUT`** | `/avisos/{id}` | **Atualiza** completamente um aviso existente. | 200 OK / 204 No Content / **304 Not Modified** |
+| **`PUT`** | `/avisos/{id}` | **Atualiza** completamente um aviso existente. | 200 OK / 204 No Content |
 | **`DELETE`** | `/avisos/{id}` | **Remove** logicamente um aviso (Soft Delete). | 204 No Content |
 
 ---
@@ -46,10 +46,7 @@ Foram adicionadas melhorias críticas para atender aos requisitos de rastreabili
 * **IDs Válidos:** O Validador de busca previne que requisições com `Id <= 0` passem para o *Handler*.
 * **Criação:** Títulos e Mensagens são obrigatórios (`NotEmpty()`).
 * **Atualização:** O Validador garante que o campo **`Mensagem`** não seja nulo ou vazio durante a edição.
-
-#### 4. Respostas Semânticas
-* **`304 Not Modified`**: Implementado no *Handler* de atualização (`PUT`) para ser retornado quando o cliente envia dados idênticos aos que já existem na base de dados, prevenindo o *overhead* de escrita.
-
+  
 ---
 
 ### ⚙️ Configuração e Execução Local
